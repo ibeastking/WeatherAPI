@@ -3,6 +3,7 @@ package com.project.weatherAPI.controller;
 import com.project.weatherAPI.entity.Location;
 import com.project.weatherAPI.model.WeatherResponse;
 import com.project.weatherAPI.repository.LocationRepository;
+import com.project.weatherAPI.tet.Solution;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -27,6 +28,9 @@ public class TimeZoneController {
 
     @Autowired
     LocationRepository locationRepository;
+
+    @Autowired
+    Solution solution;
 
     @GetMapping("/getName")
     public String getName(@RequestParam String q,
@@ -60,5 +64,11 @@ public class TimeZoneController {
         log.info("Insertion Complete");
 
         return location.getName();
+    }
+
+    @GetMapping("/tictac")
+    public String winner() {
+        log.info("Tic Tac started");
+        return solution.tictac();
     }
 }
